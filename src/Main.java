@@ -1,63 +1,74 @@
+
+
 import br.com.dio.desafio.dominio.Bootcamp;
 import br.com.dio.desafio.dominio.Curso;
+import br.com.dio.desafio.dominio.Desafio;
 import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
-
-import java.time.LocalDate;
+import br.com.dio.desafio.dominio.Questao;
+import br.com.dio.desafio.dominio.Questionario;
 
 public class Main {
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descrição curso java");
-        curso1.setCargaHoraria(8);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso js");
-        curso2.setDescricao("descrição curso js");
-        curso2.setCargaHoraria(4);
+        //Criando curso
+        Curso curso = new Curso();
+        curso.setTitulo("Java Developer");
+        curso.setCargaHoraria(50);
+        curso.setDescricao("Desenvolvimento full stack com Java");
+        
+        Questao questao1 = new Questao();
+        questao1.setPergunta("Qual dos pílares não está relacionado a Orientação Objeto?");
+        String resposta1 = "Abstração";
+        String resposta2 = "Polimorfismo";
+        String resposta3 = "Herença";
+        String resposta4 = "Compartilhamento";
+        String resposta5 = "Encapsulamento";
+        questao1.setOpcaoResposta(resposta5);
+        questao1.setOpcaoResposta(resposta4);
+        questao1.setOpcaoResposta(resposta3);
+        questao1.setOpcaoResposta(resposta2);
+        questao1.setOpcaoResposta(resposta1);
+        questao1.setRespostaCerta(resposta4);
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria java");
-        mentoria.setData(LocalDate.now());
+        Questionario questionario = new Questionario();
+        questionario.setQuestao(questao1);
+        questionario.setNome("Orientação Objetos");
+        
+        curso.setQuestionario(questionario);
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+        Desafio desafio1 = new Desafio();
+        Desafio desafio2 = new Desafio();
+        Desafio desafio3 = new Desafio();
+        Desafio desafio4 = new Desafio();
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        desafio1.setNome("Desafio 1");
+        desafio2.setNome("Desafio 2");
+        desafio3.setNome("Desafio 3");
+        desafio4.setNome("Desafio 4");
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
+        curso.setDesafio(desafio4);
+        curso.setDesafio(desafio3);
+        curso.setDesafio(desafio2);
+        curso.setDesafio(desafio1);
 
-        System.out.println("-------");
+        Mentoria mentoria1 = new Mentoria();
+        mentoria1.setTitulo("Criando API com Java");
+        mentoria1.setDescricao("Criando uma api com Spring Framework");
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularTotalXp());
 
+        Bootcamp bootcamp1 = new Bootcamp();
+        bootcamp1.setNome("Java Developer");
+        bootcamp1.setConteudos(curso);
+        bootcamp1.setConteudos(mentoria1);
+
+
+        Dev dan = new Dev();
+
+        dan.setNome("Danilo");
+        dan.inscreverBootcamp(bootcamp1);
+
+        System.out.println(dan);
     }
 
 }

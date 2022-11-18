@@ -8,14 +8,14 @@ public class Dev {
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp){
-        this.conteudosInscritos.addAll(bootcamp.getConteudos());
+        this.conteudosInscritos.addAll(bootcamp.getConteudos());  // Associação
         bootcamp.getDevsInscritos().add(this);
     }
 
     public void progredir() {
-        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst(); //Utiliza para se trabalhar tendo um possivel retorno null
         if(conteudo.isPresent()) {
-            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosConcluidos.add(conteudo.get()); // conteudo que na linha 16 é um Optional retorna um tipo Conteudo apartir do get
             this.conteudosInscritos.remove(conteudo.get());
         } else {
             System.err.println("Você não está matriculado em nenhum conteúdo!");
@@ -62,6 +62,17 @@ public class Dev {
         this.conteudosConcluidos = conteudosConcluidos;
     }
 
+    public void realizarExercicio(Questionario questionario){
+        Iterator<Conteudo> n = conteudosInscritos.iterator();
+        while(n.hasNext()){
+            //Olha eu travei nesta parte.
+            //Minha ideia é utilizar uma estrutura como essa para resolver os exercícios
+            //Porém ele me retorna um Conteudo, no caso eu precisaria de uma funcao abstrata em Conteudo pra alcançar esses elementos mas Mentoria também seria
+            //obrigada a implementar
+            //Minha limitação
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,5 +84,12 @@ public class Dev {
     @Override
     public int hashCode() {
         return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
+    }
+
+    @Override
+    public String toString() {
+        return "- Desenvolvedor: " + getNome() + "\n" +
+        "- Contéudo Inscrito: " + getConteudosInscritos() + "\n" +
+        "- Contéudo Concluido: " + getConteudosConcluidos() + "\n";
     }
 }

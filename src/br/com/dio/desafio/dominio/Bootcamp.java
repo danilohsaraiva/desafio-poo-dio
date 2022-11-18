@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Bootcamp {
+
     private String nome;
     private String descricao;
     private final LocalDate dataInicial = LocalDate.now();
@@ -51,8 +52,8 @@ public class Bootcamp {
         return conteudos;
     }
 
-    public void setConteudos(Set<Conteudo> conteudos) {
-        this.conteudos = conteudos;
+    public void setConteudos(Conteudo conteudo) {
+        this.conteudos.add(conteudo);
     }
 
     @Override
@@ -66,5 +67,14 @@ public class Bootcamp {
     @Override
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+    }
+
+    @Override
+    public String toString() {
+        return "\n{Bootcamp:\n"  +
+            "- Nome: " + getNome() + "\n" +
+        "- Descricao: " + getDescricao() + "\n" +
+        "- Desenvolvedores: " + getDevsInscritos() + "\n" +
+        "- Conteúdos: " + getConteudos() + "\n";
     }
 }
